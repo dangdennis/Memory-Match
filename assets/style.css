@@ -1,0 +1,52 @@
+body {
+	width: 1350px;
+	height: 750px;
+	margin: 0 auto;
+	background: url("pictures/background4.jpg") no-repeat center;
+	background-size: cover;
+	color: black;
+	font-family: 'Bree Serif', serif;
+}
+
+.game_title {
+	text-align: center;
+}
+
+.card {
+	margin: 5px 10px;
+	padding: 5px 5px;
+	height: 250px;
+	width: 173px;
+}
+
+.front {
+
+}
+
+.back {
+
+}
+
+.aboutme_link {
+	color: black;
+}
+
+
+/* colors
+https://designschool.canva.com/blog/website-color-schemes/
+
+modern and clean
+sky #caebf2
+carbon #a9a9a9
+watermelon #ff3b3f
+neutral #efefef
+
+cheerful and sleek
+blueberry #6b7a8f
+apricot #f7882f
+citrus #f7c331
+applecore #dcc7aa
+
+additional font:
+font-family: 'Patrick Hand SC', cursive;
+*/
