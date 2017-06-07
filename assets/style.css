@@ -1,5 +1,5 @@
 body {
-	width: 1350px;
+	width: 1500px;
 	height: 750px;
 	margin: 0 auto;
 	background: url("pictures/background4.jpg") no-repeat center;
@@ -9,26 +9,24 @@ body {
 }
 
 .game_title {
-	text-align: center;
-}
-
-.card {
-	margin: 5px 10px;
-	padding: 5px 5px;
-	height: 250px;
-	width: 173px;
-}
-
-.front {
-
-}
-
-.back {
-
+	text-align: center; 
 }
 
 .aboutme_link {
 	color: black;
+}
+
+/************************************/
+/* CSS Styling for About Me Page */
+/************************************/
+
+.skills {
+	list-style: none;
+}
+
+#myself {
+	margin: 0 auto;
+	opacity: 0.8;
 }
 
 
