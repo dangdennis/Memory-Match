@@ -2,10 +2,11 @@
 var first_card_clicked = null;
 var second_card_clicked = null;
 var clickable = true;
+var numberOfCards = 18;
 var total_possible_matches = 9;
 var match_counter = 0;
-var numberOfCards = 18;
 var attempts = 0;
+var accuracy = 0;
 var games_played = 0;
 // **** Hard-coded array of src values to be used later **** //
 var img_src = [
@@ -39,6 +40,7 @@ $(document).ready(function(){
 	});
 	$("#reset").on("click",function(){
 		resetGame();
+		displayStats();
 	})
 });
 
@@ -58,6 +60,14 @@ function cardMatcher(card) {
     if (clickable) {
         if (first_card_clicked === null) {
             first_card_clicked = card;
+			var timer1 = setTimeout(function(){
+			if (second_card_clicked !== null){
+				clearTimeout(timer1);
+			} else {
+				first_card_clicked.toggleClass("flipped");
+				first_card_clicked = null;
+				}	
+			},1000)
         } else {
             second_card_clicked = card;
             if( first_card_clicked.children(".back").children("img").attr("id") !== second_card_clicked.children(".back").children("img").attr("id") ) {
@@ -82,7 +92,7 @@ function cardMatcher(card) {
 // ***** Regulates user's clicks ****** //
 function stopClick(){
     clickable = false;
-    setTimeout(resetClickable,1300);
+    setTimeout(resetClickable,1000);
 }
 function resetClickable(){
     clickable = true;
@@ -132,37 +142,31 @@ function flip(el) {
 
 // *****  function displayStats  ***** //
 function displayStats(){
-	var accuracy = match_counter/attempts.toFixed(0);
+	accuracy = match_counter/attempts.toFixed(0);
 	$("#games-played").text(games_played);
 	$("#attempts").text(attempts);
 	$("#accuracy").text((accuracy * 100).toFixed(0) +"%");
 }
 
 // ***** Reset Functions ***** //
-function resetFlips(){
-	// if(first_card_clicked !== null) {
-	// 	setTimeout(function(){
-	// 		if(second_card_clicked !== null){
-	// 			first_card_clicked.toggleClass("flipped");
-	// 			first_card_clicked = null;
-	// 			stopClick();
-	// 		}
-	// 	},1300)
-	// } else {
-		setTimeout(function(){
-			first_card_clicked.toggleClass("flipped");
-			second_card_clicked.toggleClass("flipped");
-			first_card_clicked = null;
-			second_card_clicked = null;
-		},1300)
-	// }
+function resetFlips(){ 
+	setTimeout(function(){
+		first_card_clicked.toggleClass("flipped");
+		second_card_clicked.toggleClass("flipped");
+		first_card_clicked = null;
+		second_card_clicked = null;
+	},1000)
 }
 function resetGame(){
+	match_counter = 0;
+	attempts = 0;
+	accuracy = 0;
 	games_played++;
-	$(".game-area").html("");
+	$(".row1").html("");
+	$(".row2").html("");
+	$(".row3").html("");
+	randomized_img_src = shuffleArray(img_src);
 	generateCards();
-	$("#games-played").text("0");
-	$("#attempts").text("0");
-	$("#accuracy").text("0%");
+	displyStats();
 }
 
