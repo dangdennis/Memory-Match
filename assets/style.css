@@ -1,5 +1,5 @@
 body {
-	width: 1350px;
+	width: 1500px;
 	height: 750px;
 	margin: 0 auto;
 	background: url("pictures/background4.jpg") no-repeat center;
@@ -9,26 +9,72 @@ body {
 }
 
 .game_title {
-	text-align: center;
+	text-align: center; 
+}
+
+.aboutme_link, .label {
+	color: black;
+
+}
+
+div.row1, div.row2, div.row3 {
+	height: 275px;
+	width: 1250px;
+}
+
+.cardContainer {
+    width: 200px;
+    height: 260px;
+    position: relative;
+    perspective: 800px;
+    display: inline-block;
 }
 
 .card {
-	margin: 5px 10px;
-	padding: 5px 5px;
-	height: 250px;
-	width: 173px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: transform 1s;
+    transform-style: preserve-3d;
 }
 
-.front {
+.card div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.card .front {
 
 }
 
-.back {
-
+.card .back {
+    -webkit-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
 }
 
-.aboutme_link {
-	color: black;
+.card .front, .card .back, .back img, .front img {
+	width: 161px;
+	height: 239px;
+}
+
+.card.flipped {
+    transform: rotateY( 180deg );
+}
+
+/************************************/
+/* CSS Styling for About Me Page */
+/************************************/
+
+.skills {
+	list-style: none;
+}
+
+#myself {
+	margin: 0 auto;
+	opacity: 0.8;
 }
 
 

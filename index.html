@@ -6,19 +6,15 @@
 	<title>Brain Tunes</title>
 	<link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Patrick+Hand+SC" rel="stylesheet">
-	<script src="https://use.fontawesome.com/51e0e6f578.js"></script>
-	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/style.css">
-	<script type="text/javascript" src="assets/app.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
 		<header>
 			<nav class="row">
 				<div class="col-xs-12">
-					<h1 class="game_title">Brain Tunes</h1>
+					<h1 class="game_title">Tunes</h1>
 				</div>
 			</nav>
 		</header>
@@ -27,27 +23,33 @@
 				<aside id="sidebar" class="col-xs-2">
 					<div class="stats">
 						<h1>Stats:</h1>
-						<h3 class="games-played"><span class="label">Games Played: </span><span class="value">0</span></h3>
-						<h3 class="attempts"><span class="label">Attempts: </span><span class="value">0</span></h3>
-						<h3 class="accuracy"><span class="label">Accuracy: </span><span class="value">0%</span></h3>
+						<h3 class="games-played"><span class="label">Games Played: </span><span id="games-played" class="value">0</span></h3>
+						<h3 class="attempts"><span class="label">Attempts: </span><span id="attempts" class="value">0</span></h3>
+						<h3 class="accuracy"><span class="label">Accuracy: </span><span id="accuracy" class="value">0%</span></h3>
 					</div>
 					<div>
-						<h2>Game Info</h2>
+						<h2 class="status">Game Info</h2>
 						<br>
-						<button class="reset btn">Reset Game</button>
+						<button id="reset" class="btn">Reset Game</button>
 						<br>
 						<h3><a class="aboutme_link" href="about.html">About Me</a></h3>
 					</div>
 				</aside>
-				<section class="game-area col-xs-10">
-					<div class="row">
-						<div class="col-xs-2 back">
-							<img class="card" src="assets/pictures/legend_cardback.png">
-						</div>
+				<section class="col-xs-10">
+					<div class="game-area row">
+						<div class="row1"></div>
+						<div class="row2"></div>
+						<div class="row3"></div>
 					</div>
 				</section>
 			</div>
 		</main>
 	</div>
+	<script
+			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+			crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/script.js"></script>
 </body>
 </html>
