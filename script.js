@@ -8,12 +8,14 @@ var match_counter = 0;
 var attempts = 0;
 var accuracy = 0;
 var games_played = 0;
+var clickedInTime = false;
+var intervalID = 0;
+var tick = 0;
 
 // Document Ready //
 $(document).ready(function(){
 	generateCards();
 	Handlers();
-	CountDown();
 });
 
 function Handlers(){
@@ -75,17 +77,41 @@ function cardMatcher(card) {
             first_card_clicked = card;
             console.log("first card set:" + first_card_clicked);
             console.log("first card set but as 'this':" + card);
-			var flipTimer = setTimeout(function(){
-					if(second_card_clicked !== null){
-						clearTimeout(flipTimer);
-					} else {
-						console.log("timer for still running after timer supposedly cleared");
-						attempts++;
-						first_card_clicked.toggleClass("flipped");
-						first_card_clicked = null;
-						displayStats();
-					}
-				},1400);
+            var second_clicked = false;
+
+            intervalID = setInterval(function(){
+            	tick++;
+            	console.log(tick);
+            	if(tick == 5){
+            		if(intervalID != 0){
+            			clearInterval(intervalID);
+            			first_card_clicked.toggleClass("flipped");
+            			first_card_clicked = null;
+            			displayStats();
+            			tick = 0;
+            		}
+            	}
+            }, 1000)
+            // timeOutID = setTimeout(function(){
+            // 	if(second_card_clicked == null){
+            // 		first_card_clicked.toggleClass("flipped");
+	           //  	first_card_clicked = null;
+	           //  	displayStats();
+	           //  	console.log('timer set');
+            // 	}	
+            // }, 5000);
+          
+			// var flipTimer = setTimeout(function(){
+			// 		if(second_card_clicked !== null){
+			// 			clearTimeout(flipTimer);
+			// 		} else {
+			// 			console.log("timer for still running after timer supposedly cleared");
+			// 			attempts++;
+			// 			first_card_clicked.toggleClass("flipped");
+			// 			first_card_clicked = null;
+			// 			displayStats();
+			// 		}
+			// 	},1400);
 			card.off("click");
 			var addClickTimer = setTimeout(function(){
 				card.on("click",function(){
@@ -97,17 +123,23 @@ function cardMatcher(card) {
         } else {
             second_card_clicked = card;
             if ( first_card_clicked.children(".back").children("img").attr("id") !== second_card_clicked.children(".back").children("img").attr("id") ) {
+                tick = 0;
+                if(intervalID != 0){
+                	clearInterval(intervalID);
+                }
                 stopClick();
                 resetFlips();
                 attempts++;
                 displayStats();
                 console.log("cards don't match");
             } else {//( first_card_clicked.children(".back").children("img").attr("id") === second_card_clicked.children(".back").children("img").attr("id") )
+                first_card_clicked.off();
+                second_card_clicked.off();
                 console.log("this is the first card after second card is clicked" + first_card_clicked);
                 console.log(first_card_clicked);
-	            $(".clickable").off("click");
-	            first_card_clicked.removeClass("clickable");
-	            second_card_clicked.removeClass("clickable");
+	            // $(".clickable").off("click");
+	            // first_card_clicked.removeClass("clickable");
+	            // second_card_clicked.removeClass("clickable");
 	            $(".clickable").on("click");
                 console.log("cards did match");
             	stopClick();
@@ -183,56 +215,4 @@ function resetGame(){
 	Handlers();
 	displayStats();
 }
-
-function CountDown(elem) {
-	this.countdownSecs = 0;
-	this.timer = 0;
-	this.startTime = 0;
-	this.elapsedSecs = 0;
-	this.secsLeft = 0;
-	this.$displayElem = elem;
-
-	this.SecondsLeft = function() {
-		return this.countdownSecs - this.elapsedSecs;
-	}
-
-	this.ElapsedSeconds = function() {
-		return Math.floor((new Date() - this.startTime) / 1000);
-	}
-
-	this.StartTimer = function(startTme) {
-		this.StopTimer();
-		if (this.countdownSecs == 0) return;
-		if (startTme) this.startTime = startTme;
-		else this.startTime = new Date();
-		this.CountdownTick();
-		this.timer = window.setInterval(function() {this.CountdownTick()}.bind(this), 1000);
-	}
-
-	this.StopTimer = function() {
-		if (this.timer == 0) return;
-		window.clearInterval(this.timer);
-		this.timer = 0;
-		this.elapsedSecs = Math.floor((new Date() - this.startTime) / 1000);
-		this.secsLeft = this.countdownSecs - this.elapsedSecs;
-	}
-
-	this.CountdownTick = function() {
-		this.elapsedSecs = Math.floor((new Date() - this.startTime) / 1000);
-		var left = this.countdownSecs - this.elapsedSecs;
-		if (left < 0) {
-			this.StopTimer();
-			$(this).trigger("tick", [0]);
-			return;
-		}
-		if (left % 10 == 0) $(this).trigger("tick", [left]);
-
-		var mins = Math.floor(left / 60);
-		var secs = left % 60;
-		if (secs < 10) secs = "0" + secs.toString();
-
-		this.$displayElem.text(mins + ":" + secs);
-	}
-}
-
 
