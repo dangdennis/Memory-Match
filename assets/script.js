@@ -97,7 +97,7 @@ function cardMatcher(card) {
         } else {
             second_card_clicked = card;
             if ( first_card_clicked.children(".back").children("img").attr("id") !== second_card_clicked.children(".back").children("img").attr("id") ) {
-                stopClick();/
+                stopClick();
                 resetFlips();
                 attempts++;
                 displayStats();
