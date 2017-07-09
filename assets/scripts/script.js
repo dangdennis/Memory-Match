@@ -33,24 +33,24 @@ function Handlers(){
 // **** Immutable array of src values to be used later **** //
 function newDeck(){
 	var img_src = [
-	{id: "1", url: "pictures/backs/back1.jpg"},
-	{id: "2", url: "pictures/backs/back2.jpg"},
-	{id: "3", url: "pictures/backs/back3.jpg"},
-	{id: "4", url: "pictures/backs/back4.jpg"},
-	{id: "5", url: "pictures/backs/back5.jpg"},
-	{id: "6", url: "pictures/backs/back6.jpg"},
-	{id: "7", url: "pictures/backs/back7.jpg"},
-	{id: "8", url: "pictures/backs/back8.jpg"},
-	{id: "9", url: "pictures/backs/back9.jpg"},
-	{id: "1", url: "pictures/backs/back1.jpg"},
-	{id: "2", url: "pictures/backs/back2.jpg"},
-	{id: "3", url: "pictures/backs/back3.jpg"},
-	{id: "4", url: "pictures/backs/back4.jpg"},
-	{id: "5", url: "pictures/backs/back5.jpg"},
-	{id: "6", url: "pictures/backs/back6.jpg"},
-	{id: "7", url: "pictures/backs/back7.jpg"},
-	{id: "8", url: "pictures/backs/back8.jpg"},
-	{id: "9", url: "pictures/backs/back9.jpg"}
+	{id: "1", url: "assets/pictures/backs/back1.jpg"},
+	{id: "2", url: "assets/pictures/backs/back2.jpg"},
+	{id: "3", url: "assets/pictures/backs/back3.jpg"},
+	{id: "4", url: "assets/pictures/backs/back4.jpg"},
+	{id: "5", url: "assets/pictures/backs/back5.jpg"},
+	{id: "6", url: "assets/pictures/backs/back6.jpg"},
+	{id: "7", url: "assets/pictures/backs/back7.jpg"},
+	{id: "8", url: "assets/pictures/backs/back8.jpg"},
+	{id: "9", url: "assets/pictures/backs/back9.jpg"},
+	{id: "1", url: "assets/pictures/backs/back1.jpg"},
+	{id: "2", url: "assets/pictures/backs/back2.jpg"},
+	{id: "3", url: "assets/pictures/backs/back3.jpg"},
+	{id: "4", url: "assets/pictures/backs/back4.jpg"},
+	{id: "5", url: "assets/pictures/backs/back5.jpg"},
+	{id: "6", url: "assets/pictures/backs/back6.jpg"},
+	{id: "7", url: "assets/pictures/backs/back7.jpg"},
+	{id: "8", url: "assets/pictures/backs/back8.jpg"},
+	{id: "9", url: "assets/pictures/backs/back9.jpg"}
 	];
 	return img_src;
 }
@@ -175,7 +175,7 @@ function generateCards(){
 		var newBack = $("<div>").addClass("back").appendTo(newCard);
 		var newBackImg = $("<img>").attr("id", obj.id).css('background-image', 'url(' + obj.url + ')').appendTo(newBack);
 		var newFront = $("<div>").addClass("front").appendTo(newCard);
-		var newFrontImg = $("<img>").attr("src", "pictures/legend_cardback.png").appendTo(newFront);
+		var newFrontImg = $("<img>").attr("src", "assets/pictures/legend_cardback.png").appendTo(newFront);
 	}
 }
 // *****  Function to animate card flips  ***** //
