@@ -1,30 +1,39 @@
 
 $(document).ready(function() {
 	var app = new App();
-
-	function App() {
-		this.model 		= new MemoryMatchModel(this);
-		this.view  		= new MemoryMatchView(this);
-		this.controller = new MemoryMatchController(this);
-	}
+	app.init();
 });
 
+// App is the primary controller between model and view
+function App() {
+	var self = this;
+	this.model = new MemoryMatchModel(this);
+	this.view  = new MemoryMatchView(this);
 
+	this.init = function() {
+		this.view.displayCards(this.model.getDeck());
+		this.setUpHandlers();
+	};
 
-// $(document).ready(initializeApp);
-// var app = null;
+	this.setUpHandlers = function() {
+		console.log('setting up handlers');
+		self.addCardClickListeners();
+	};
 
-// function initializeApp(){
-// 	var optionsObject = {
-// 		dateElement : $("input[name='dueDate']"),
-// 		titleElement : $("input[name='title'"),
-// 		descriptionElement : $("input[name='description']"),
-// 		submitElement : $("#submitTodo"),
-// 		modalElement: $("#viewDialog"),
-// 		displayElement: $("#itemDisplay"),
-// 		maxCharacters: 100,
-// 	}
-// 	console.log(optionsObject);
-// 	app = new TodoListController(optionsObject);
-// 	app.init();
-// }
+	this.addCardClickListeners = function(deck) {
+		$(".card").on("click",function() {
+			self.handleFlip($(this));
+			self.updateStats();
+		})
+	}
+
+	this.handleFlip = function(card) {
+		self.model.flipCard(card);
+		self.view.flipCard(card);
+	}
+
+	this.updateStats = function() {
+		self.view.displayStats(self.model.getStats());
+	}
+
+}

@@ -1,7 +1,19 @@
 
 
-function MemoryMatchModel(parent){
-	this.mainController = parent;
+function MemoryMatchModel(){
+	var self = this;
+
+	var gameStats = {
+		attempts: 0,
+		match_counter: 0,
+		games_played: 0,
+		accuracy: 0,
+		total_possible_matches: 9
+	};
+	this.getStats = function() {
+		return gameStats;
+	}
+
 	this.pictureObj = {
 		front: "assets/pictures/legend_cardback.png",
 		back: [
@@ -17,37 +29,53 @@ function MemoryMatchModel(parent){
 			]
 	};
 
-	this.makeNewCard = function(id,front,back) {
+	this.newCard = function(id,front,back) {
 		this.id = id;
 		this.front = front;
 		this.back = back;
 		this.clicked = false;
 		this.matched = false;
+		this.handleFlip = function() {
+			this.on("click", function() {
+				if(this.clicked === false && card.matched === false) {
+					this.clicked = true;
+				} else {
+					this.clicked = false;
+				}
+			})
+		}
+	}
+
+	this.flipCard = function(card) {
+		console.log('model card', card);
 	}
 
 	this.makeNewDeck = function(numOfCards,picObj){
 		var deck = [];
 		while(deck.length < numOfCards){
 			for(var i=0; i < numOfCards/2; i++) {
-				var card = new this.makeNewCard(i,picObj.front,picObj.back[i]);
+				var card = new self.newCard(i,picObj.front,picObj.back[i]);
 				deck.push(card);
 			}
 		};
-		return deck;
-	}
-
-	this.shuffleDeck = function(deck) {
-	    for (var i = deck.length - 1; i > 0; i--) {
+		for (var i = deck.length - 1; i > 0; i--) {
 	        var j = Math.floor(Math.random() * (i + 1));
 	        var temp = deck[i];
 	        deck[i] = deck[j];
 	        deck[j] = temp;
-	    }
-	    return deck;
+	    };
+		return deck;
+	}
+
+	this.calculateAccuracy = function() {
+		var accuracy = (gameStats.match_counter/gameStats.attempts).toFixed(0);
+		return accuracy;
 	}
 
 	var currentDeck = this.makeNewDeck(18,this.pictureObj);
-	this.deck = this.shuffleDeck(currentDeck);
+	this.getDeck = function() {
+		return currentDeck;
+	}
 
 }
 
