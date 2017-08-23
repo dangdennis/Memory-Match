@@ -26,6 +26,15 @@ function MemoryMatchModel(){
 			"assets/pictures/backs/back7.jpg",
 			"assets/pictures/backs/back8.jpg",
 			"assets/pictures/backs/back9.jpg",
+			"assets/pictures/backs/back1.jpg",
+			"assets/pictures/backs/back2.jpg",
+			"assets/pictures/backs/back3.jpg",
+			"assets/pictures/backs/back4.jpg",
+			"assets/pictures/backs/back5.jpg",
+			"assets/pictures/backs/back6.jpg",
+			"assets/pictures/backs/back7.jpg",
+			"assets/pictures/backs/back8.jpg",
+			"assets/pictures/backs/back9.jpg",
 			]
 	};
 
@@ -48,12 +57,13 @@ function MemoryMatchModel(){
 
 	this.flipCard = function(card) {
 		console.log('model card', card);
+		var cardId = $(card).attr('id');
 	}
 
 	this.makeNewDeck = function(numOfCards,picObj){
 		var deck = [];
 		while(deck.length < numOfCards){
-			for(var i=0; i < numOfCards/2; i++) {
+			for(var i=0; i < numOfCards; i++) {
 				var card = new self.newCard(i,picObj.front,picObj.back[i]);
 				deck.push(card);
 			}

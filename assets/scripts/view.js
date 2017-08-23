@@ -21,11 +21,10 @@ function MemoryMatchView(){
 		$("#accuracy").text(statsObj.accuracy);
 	}
 
-	this.flipViewCard = function(card) {
-		// if(card.clicked === false && card.matched === false) {
-		// 	card.toggleClass('flipped');
-		// }
+	this.flipCard = function(card) {
 		console.log('view card', card);
+		$(card).toggleClass('flipped');
+		
 	}
 
 
